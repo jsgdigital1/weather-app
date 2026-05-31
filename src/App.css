@@ -133,3 +133,8 @@ h1 {
   font-weight: 700;
   color: #f1f5f9;
 }
+
+.weather-icon-main {
+  font-size: 64px;
+  margin-bottom: 8px;
+}

@@ -1,6 +1,16 @@
 import { useState } from 'react'
 import './App.css'
 
+function weatherIcon(code) {
+  if (code === 800) return '☀️'
+    else if (code >= 500 && code < 600) return '🌧️'
+    else if (code >= 200 && code < 300) return '⛈️' 
+    else if (code >= 700 && code < 800) return '🌫️'
+    else if (code >= 600 && code < 700) return '❄️'
+    else if (code >= 300 && code < 400) return '🌦️'
+    else if (code >= 801 && code < 805) return '☁️'
+ }
+
 function DetailCard({ icon, label, value }) {
   return (
     <div className="detail-card">
@@ -67,6 +77,9 @@ function App() {
       {weather && (
         <div>
           <div className="weather-card">
+            <div>
+            <span className="weather-icon-main">{weatherIcon(weather.weather[0].id)}</span>
+            </div>
             <h2 className="weather-city">{weather.name}</h2>
             <div className="weather-temp">{Math.round(weather.main.temp)}°F</div>
             <p className="weather-desc">{weather.weather[0].description}</p>
