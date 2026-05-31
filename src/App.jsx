@@ -24,14 +24,14 @@ if (data.cod !==200) {
   return
 }
 
-  setWeather(`${data.name}: ${data.main.temp}F, ${data.weather[0].description}`)
+  setWeather(data)
   setLoading(false)
 }
 
 
   return (
     <div className="app">
-      <h1>Weather App</h1>
+      <h1>Happy Weather</h1>
 
       <div className="search-row">
       <input 
@@ -46,7 +46,13 @@ if (data.cod !==200) {
 
        {error && <p style={{ color: 'red' }}>{error}</p>}
        {loading && <p>Loading...</p>}
-       {weather && <p>{weather}</p>}
+       {weather && (
+        <div className="weather-card">
+          <h2 className="weather-city">{weather.name}</h2>
+          <div className="weather-temp">{Math.round(weather.main.temp)}°F</div>
+          <p className="weather-desc">{weather.weather[0].description}</p>
+          </div>
+       )}
 
        </div>
   )
