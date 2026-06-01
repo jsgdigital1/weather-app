@@ -8,7 +8,8 @@ function weatherIcon(code) {
     else if (code >= 700 && code < 800) return '🌫️'
     else if (code >= 600 && code < 700) return '❄️'
     else if (code >= 300 && code < 400) return '🌦️'
-    else if (code >= 801 && code < 805) return '☁️'
+    else if (code === 803 || code === 804) return '☁️'
+    else if (code === 801 || code === 802) return '⛅'
  }
 
 function DetailCard({ icon, label, value }) {
