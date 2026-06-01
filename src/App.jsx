@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function weatherIcon(code) {
@@ -10,6 +10,7 @@ function weatherIcon(code) {
     else if (code >= 300 && code < 400) return '🌦️'
     else if (code === 803 || code === 804) return '☁️'
     else if (code === 801 || code === 802) return '⛅'
+    else return '🌤️'
  }
 
 function DetailCard({ icon, label, value }) {
@@ -23,10 +24,14 @@ function DetailCard({ icon, label, value }) {
 }
 
 function App() {
-  const [city, setCity] = useState('')
   const [weather, setWeather] = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [city, setCity] = useState(localStorage.getItem('lastCity') || '')
+
+  useEffect(() => {
+    if (city) fetchWeather()
+  }, [])
 
   async function fetchWeather() {
     setLoading(true)
@@ -45,6 +50,7 @@ function App() {
     }
 
     setWeather(data)
+    localStorage.setItem('lastCity', city)
     setLoading(false)
   }
 
